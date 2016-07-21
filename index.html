@@ -1,76 +1,134 @@
 <!doctype html>
 <html>
 	<head>
-		<title>Repositório de códigos: Como as métricas evoluem</title>
-		<link rel="shortcut icon" href="img/logo2.png" >
+		<title>scm-extract para Java</title>
+		<link rel="shortcut icon" href="img/extract_logo.png" >
 		<link rel="stylesheet" href="css/bootstrap.min.css">
 		<link rel="stylesheet" href="css/style.css">
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" charset="UTF-8">
 	</head>
-		<body>
+	<body>
+		<nav class="navbar ">
+    		<div class="container-fluid">
+       			<div class="navbar-header">
+       				<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+           				<span class="icon-bar"></span>
+           				<span class="icon-bar"></span>
+           				<span class="icon-bar"></span>
+       				</button>
+       			</div>
+       			<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+          			<ul class="nav navbar-nav navbar-right">
+            			<li><a class="navlink" href="#home">O que é ?</a></li>
+            			<li><a class="navlink" href="#start">Getting Started</a></li>
+           				<li><a class="navlink" href="#exemplos">Exemplos de uso</a></li>
+            			<li><a class="navlink" href="#novidades">Novidades</a></li>
+            			<li><a class="navlink" href="#desenvolvedores">Desenvolvedores</a></li>
+            			<li><a class="navlink" href="#contato">Contato</a></li>
+          			</ul>
+        		</div>
+      		</div>
+    	</nav>	
 			
-			<div class="container">
-				<div class="row">
-					<ul class="nav nav-tabs">
-						<li role="presentation" class="active"><a href="#">Home</a></li>
-						<li role="presentation"><a href="moreinfo.html">Mais Informações</a></li>
-						<li role="presentation"><a href="emconstrucao.html">Referencial Teórico</a></li>
-						<li role="presentation"><a href="emconstrucao.html">A Pesquisa</a></li>
-						<li role="presentation"><a href="resultados.html">Resultados</a></li>
-					</ul>
-					<h1>Repositório de códigos: Como as métricas evoluem</h1></br></br></br>
+		<div class="container">
+			<div class="row ">
 					
-					<div class="col-md-10 col-md-offset-1 conteudo" >
-					<h3>Objetivo Geral</h3>
-					<p class="text-justify">O principal objetivo deste trabalho é identificar como as métricas de
-						software evoluem em um repositório de código, assim sendo possível 
-						mensurar a qualidade dos projetos de software e prover uma ferramenta 
-						que torne estas informações úteis para o desenvolvedor. </p>
+				<h1>scm-extract para Java</h1></br></br></br>
 					
-					<h3>Objetivos Específicos </h3>
-					<ul>
-						<li>Analisar as ferramentas de mensuração de métricas;</li>
-						<li>Definir métricas que tornem possível a avaliação da qualidade de um projeto de software;</li>
-						<li>Planejar o experimento para avaliação do trabalho;</li>
-						<li>Implementar uma ferramenta de análise de repositórios;</li>
-						<li>Disponibilizar uma ferramenta para desenvolvedores de software
-						que torne a visualização dos dados acerca da qualidade do código possível;</li>
-						<li>Facilitar a detecção de um ponto de refatoração de código;</li>
-					</ul>
-
-					<h3>Metodologia</h3>
-					<table class="met.png col-md-offset-3">
-						<caption align="bottom">Figura 1. Metodologia que será utilizada.</caption>
-						<tr><td><img class="img-responsive metodologia-img" src="img/met.png" alt=""></td></tr> 
-					</table>
-					<p class="text-justify">Inicialmente será realizado um levantamento bibliográfico sobre métricas, evolução
-					e qualidade de software para melhor direcionar a execução deste trabalho.</p>
-
-					<p class="text-justify">Posteriormente, serão obtidos, a partir de um sistema de controle de versão 
-					(VCS - Version Control System), o projeto que será a base para os estudos e algumas de
-					suas versões que estarão disponíveis no repositório de códigos, para em seguida,
-					extrair as métricas necessárias e realizar a análise destas a fim de inferir sobre a
-					qualidade do código estudado.</p>
+				<div class="col-md-10 col-md-offset-1 conteudo" >
 					
-					<p class="text-justify">Para cada versão disponível no repositório as métricas, que serão extraídas automaticamente, 
-					serão analisadas e os dados serão armazenados em um banco de dados ou em uma planilha online 
-					para estudos posteriores. Será realizada uma análise estatística com os dados levantados para
-					identificarmos quais características e fatores sobre a qualidade podem ser inferidas através
-					das métricas escolhidas.</p>
+					<h3 id="home">O que é ?</h3>
+					<hr class="divider"/>
+					
+					<p class="text-justify">O scm-extract é uma ferramenta desenvolvida em Java que visa a automatização do processo de checkout de projetos de software, bem como de suas versões, a partir de repositórios online de códigos, como por exemplo o Github. 
+					Esta ferramenta surgiu a partir da necessidade de se obter várias versões de um projeto de software de forma mais rápida, para que assim pudessem ser realizadas pesquisas sobre tais versões.
+					O scm-extract atualmente conta com a integração com dois scm (gerência de configuração de softare, do inglês, software configuration management), Git e Svn. Em suas próximas versões contará com a integração ao Mercurial.    </p>
+						
+					<h3 id="start">Getting Started</h3>
+					<hr class="divider"/>
+					
+					Clone o repositorio
+					<pre><code>git clone https://github.com/EndenhariaDeSoftware/scm-extract</code></pre><br>
+					<h4>Usando maven</h4><br>
+					Execute
+					<pre><code>mvn clean install</code></pre><br>
+					Adicione como dependencia local
+					<pre><code>mvn install:install-file -Dfile=./target/scm-extract-1.0-SNAPSHOT.jar -DgroupId=br.edu.ifpb.scm -DartifactId=scm-extract -Dversion=1.0 -Dpackaging=jar</code></pre><br>
+					Abra um projeto na IDE e adicione a dependência do <strong>scm-extract</strong> no pom.xml
+<pre><code>&ltdependency&gt
+ 	&ltgroupId&gtbr.edu.ifpb.scm.api&lt/groupId&gt
+ 	&ltartifactId&gtscm-extract&lt/artifactId&gt
+ 	&ltversion&gt1.0&lt/version&gt
+&lt/dependency&gt</pre></code>
 
-					<p class="text-justify">Ao final, espera-se o desenvolvimento de uma ferramenta que torne possível a visualização 
-					acerca da qualidade do código de um projeto de software	que esteja sendo desenvolvido. 
-					Nesta etapa, será implementado um plugin para auxiliar o desenvolvedor.</p>
+					
+					<h3 id="exemplos">Exemplos de uso</h3>
+					<hr class="divider"/>
+					
+						<ul>
+							<li><a href="#">Clonando um repositório remoto</a></li>
+							<li><a href="#">Recuperando um repositório local</a></li>
+							<li><a href="#">Exibindo as informações de commits</a></li>
+							<li><a href="#">Exibindo quais arquivos foram modificados entre as versões</a></li>
+							<li><a href="#">Exibindo as modificações entre as versões dos arquivos</a></li>
+						</ul>
+
+					<h3 id="novidades">Novidades</h3>
+					<hr class="divider"/>
+
+					<p>Versão 1.0 disponível. 21 de julho de 2016. Link para download: <a href="https://github.com/EndenhariaDeSoftware/scm-extract.git">GitHub</a></p>
+
+					<h3 id="desenvolvedores">Desenvolvedores</h3>
+					<hr class="divider"/>
+
+					<div class="col-xs-6 col-md-4">
+    					<div class="thumbnail">
+      						<img class="img-responsive img-circle" src="img/job.jpg" alt="...">
+      						<div class="caption text-center">
+        						<a href="http://buscatextual.cnpq.br/buscatextual/visualizacv.do?id=K4241231A4" title="Lattes"><h3>Ricardo de Sousa Job</h3></a>
+        						<p>Mestre em Ciência da Computação pela Universidade Federal de Campina Grande</p><br>
+        					</div>
+    					</div>
+  					</div>
+
+					<div class="col-xs-6 col-md-4">
+    					<div class="thumbnail">
+      						<img class="img-responsive img-circle" src="img/jair.jpg" alt="...">
+      						<div class="caption text-center">
+        						<a href="#" ><h3>Jair Anderson de Sousa</h3></a>
+        						<p>Graduando em Análise e Desenvolvimento de Sistemas pelo Instituto Federal da Paraíba Campus Cajazeiras</p>
+        					</div>
+    					</div>
+  					</div>
+
+					<div class="row">
+  						<div class="col-xs-6 col-md-4">
+    						<div class="thumbnail">
+      							<img class="img-responsive img-circle" src="img/pris2.jpg" alt="...">
+      							<div class="caption text-center">
+        							<a href="http://buscatextual.cnpq.br/buscatextual/visualizacv.do?id=K4856867T5" title="Lattes" ><h3>Priscila Gabriel Gouveia</h3></a>
+        							<p>Graduanda em Análise e Desenvolvimento de Sistemas pelo Instituto Federal da Paraíba Campus Cajazeiras</p>
+        						</div>
+    						</div>
+  						</div>
 					</div>
 					
-				</div>
-				
-			</div>
-			<footer class="navbar navbar-bottom">
+					<h3 id="contato">Contato</h3>
+					<hr class="divider"/>
 					
-			</footer>
-			<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
-			<script src="js/bootstrap.js"></script>
-		</body>
+					<address>
+						<p ><a class="instituto" title= "Site IFPB" href="http://www.ifpb.edu.br/cajazeiras">Instituto Federal da Paraíba - Campus Cajazeiras</a><p>
+						<p>Rua José Antonio da Silva, 300. Jardim Oasis.
+						58900-000, Cajazeiras - PB.</p>
+					</address>
+				</div>
+			</div>
+		</div>
+				
+		<footer class="navbar navbar-bottom"></footer>			
+
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+		<script src="js/bootstrap.js"></script>
+	</body>
 	
-	</html>
+</html>
